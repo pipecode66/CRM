@@ -45,3 +45,8 @@ export async function getLeadById(_leadId: string) {
   // Return null until database is set up
   return null;
 }
+
+export async function getTemplates() {
+  // Return empty templates until database is set up
+  return [];
+}
