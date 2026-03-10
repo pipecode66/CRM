@@ -1,16 +1,12 @@
 import { WorkflowBuilder } from "@/components/crm/workflow-builder";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { db } from "@/lib/db";
+import { getWorkflows } from "@/lib/crm/queries";
 
 export default async function WorkflowsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const dictionary = getDictionary(locale);
 
-  const workflows = await db.workflow.findMany({
-    orderBy: { updatedAt: "desc" },
-    take: 10,
-  }).catch(() => []);
-
+  const workflows = await getWorkflows();
   const latest = workflows[0];
 
   return (
@@ -21,7 +17,7 @@ export default async function WorkflowsPage({ params }: { params: Promise<{ loca
       </header>
 
       <WorkflowBuilder
-        workflowName={latest?.name ?? "Flujo demo: atenciÃ³n + clasificaciÃ³n + seguimiento"}
+        workflowName={latest?.name ?? "Flujo demo: atención + clasificación + seguimiento"}
       />
 
       <article className="rounded-2xl border border-slate-200 bg-white p-4">
@@ -29,10 +25,10 @@ export default async function WorkflowsPage({ params }: { params: Promise<{ loca
         <div className="mt-3 space-y-2">
           {workflows.map((workflow) => (
             <div key={workflow.id} className="rounded-lg bg-slate-50 p-2 text-sm text-slate-700">
-              {workflow.name} Â· {workflow.trigger} Â· v{workflow.version} Â· {workflow.active ? "activo" : "pausado"}
+              {workflow.name} · {workflow.trigger} · v{workflow.version} · {workflow.active ? "activo" : "pausado"}
             </div>
           ))}
-          {workflows.length === 0 ? <p className="text-sm text-slate-400">Sin flujos creados aÃºn.</p> : null}
+          {workflows.length === 0 ? <p className="text-sm text-slate-400">Sin flujos creados aún.</p> : null}
         </div>
       </article>
     </section>

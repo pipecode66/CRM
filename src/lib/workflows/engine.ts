@@ -63,7 +63,7 @@ const actionHandlers: Record<string, ActionHandler> = {
 
     await db.task.create({
       data: {
-        title: String(nodeData.title ?? "Seguimiento automÃ¡tico"),
+        title: String(nodeData.title ?? "Seguimiento automático"),
         description: String(nodeData.description ?? ""),
         branchId: ctx.branchId,
         leadId: ctx.leadId,

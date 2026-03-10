@@ -22,7 +22,7 @@ export function LoginForm({ locale }: { locale: string }) {
     });
 
     if (!response?.ok) {
-      setError("Credenciales invÃ¡lidas o usuario no registrado");
+      setError("Credenciales inválidas o usuario no registrado");
       setLoading(false);
       return;
     }

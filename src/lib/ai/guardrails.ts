@@ -4,7 +4,7 @@ const blockedPatterns = [
   /tarjeta/i,
   /descuento/i,
   /password/i,
-  /contraseÃ±a/i,
+  /contraseña/i,
   /documento de identidad/i,
   /token/i,
 ];

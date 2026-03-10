@@ -1,7 +1,6 @@
 import { InboxBoard } from "@/components/crm/inbox-board";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { db } from "@/lib/db";
-import { getInboxConversations } from "@/lib/crm/queries";
+import { getInboxConversations, getTemplates } from "@/lib/crm/queries";
 
 export default async function InboxPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -9,15 +8,7 @@ export default async function InboxPage({ params }: { params: Promise<{ locale: 
 
   const [conversations, templates] = await Promise.all([
     getInboxConversations(),
-    db.template.findMany({
-      where: { isActive: true },
-      take: 30,
-      select: {
-        slug: true,
-        content: true,
-      },
-      orderBy: { updatedAt: "desc" },
-    }).catch(() => []),
+    getTemplates(),
   ]);
 
   return (
@@ -30,13 +21,7 @@ export default async function InboxPage({ params }: { params: Promise<{ locale: 
       </header>
 
       <InboxBoard
-        conversations={conversations.map((conversation) => ({
-          ...conversation,
-          messages: conversation.messages.map((message) => ({
-            ...message,
-            createdAt: message.createdAt.toISOString(),
-          })),
-        }))}
+        conversations={conversations}
         templates={templates}
       />
     </section>

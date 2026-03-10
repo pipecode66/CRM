@@ -38,10 +38,10 @@ function composeSystemPrompt(language: "es" | "en") {
 - Always include source references from supplied context.`;
   }
 
-  return `Eres un agente IA autÃ³nomo de CRM para ventas/soporte.
+  return `Eres un agente IA autónomo de CRM para ventas/soporte.
 - Responde de forma breve, comercial y cordial.
 - Solicita datos faltantes para calificar leads.
-- Si hay acciones sensibles (pagos/descuentos/datos privados), indica que requiere validaciÃ³n humana.
+- Si hay acciones sensibles (pagos/descuentos/datos privados), indica que requiere validación humana.
 - Incluye referencias de las fuentes de contexto entregadas.`;
 }
 
@@ -63,7 +63,7 @@ export async function runAIAgent(input: AgentInput): Promise<AgentOutput> {
   let reply =
     language === "en"
       ? "I got your request. I can help with details, pricing, and next steps."
-      : "RecibÃ­ tu solicitud. Te puedo ayudar con detalles, precios y prÃ³ximos pasos.";
+      : "Recibí tu solicitud. Te puedo ayudar con detalles, precios y próximos pasos.";
   let confidence = 0.62;
 
   if (client) {
