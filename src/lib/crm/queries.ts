@@ -1,6 +1,13 @@
-import { LeadStatus, Prisma } from "@prisma/client";
-
-import { db } from "@/lib/db";
+// Define LeadStatus locally to avoid Prisma client dependency at import time
+const LeadStatus = {
+  NEW: "NEW",
+  QUALIFIED: "QUALIFIED",
+  PROPOSAL: "PROPOSAL",
+  NEGOTIATION: "NEGOTIATION",
+  WON: "WON",
+  LOST: "LOST",
+  POST_SALE: "POST_SALE",
+} as const;
 
 type DashboardFilters = {
   branchId?: string;
@@ -10,6 +17,18 @@ type DashboardFilters = {
   to?: Date;
 };
 
+type MessageWhereInput = {
+  conversation?: {
+    channel?: string;
+    branchId?: string;
+  };
+  createdAt?: {
+    gte?: Date;
+    lte?: Date;
+  };
+  direction?: string;
+};
+
 function defaultDateRange() {
   const end = new Date();
   const start = new Date();
@@ -17,17 +36,23 @@ function defaultDateRange() {
   return { start, end };
 }
 
-function buildWhere(filters: DashboardFilters): Prisma.MessageWhereInput {
+function buildWhere(filters: DashboardFilters): MessageWhereInput {
   const range = defaultDateRange();
 
   return {
-    ...(filters.channel ? { conversation: { channel: filters.channel as never } } : {}),
+    ...(filters.channel ? { conversation: { channel: filters.channel } } : {}),
     ...(filters.branchId ? { conversation: { branchId: filters.branchId } } : {}),
     createdAt: {
       gte: filters.from ?? range.start,
       lte: filters.to ?? range.end,
     },
   };
+}
+
+// Lazy load db to avoid Prisma client errors at import time
+async function getDb() {
+  const { db } = await import("@/lib/db");
+  return db;
 }
 
 const mockDashboard = {
