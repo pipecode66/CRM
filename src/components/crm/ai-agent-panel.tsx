@@ -65,7 +65,7 @@ export function AIAgentPanel() {
             <p className="rounded-lg bg-white p-3 text-sm text-slate-700">{result.reply}</p>
             <p className="text-xs text-slate-500">Confianza: {(result.confidence * 100).toFixed(1)}%</p>
             <p className="text-xs text-slate-500">
-              Guardrail crÃ­tico: {result.requiresApproval ? "Requiere aprobaciÃ³n humana" : "No requerido"}
+              Guardrail crítico: {result.requiresApproval ? "Requiere aprobación humana" : "No requerido"}
             </p>
             <div className="space-y-2">
               {result.citations.map((citation, index) => (
@@ -77,7 +77,7 @@ export function AIAgentPanel() {
             </div>
           </div>
         ) : (
-          <p className="mt-2 text-sm text-slate-500">Sin ejecuciÃ³n todavÃ­a.</p>
+          <p className="mt-2 text-sm text-slate-500">Sin ejecución todavía.</p>
         )}
       </article>
     </section>

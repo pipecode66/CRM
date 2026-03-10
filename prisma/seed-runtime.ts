@@ -15,7 +15,7 @@ export async function seedDemoData() {
   const stageDefinitions = [
     { name: "Leads entrantes", order: 1, color: "#0ea5e9" },
     { name: "Mensajes de redes", order: 2, color: "#22c55e" },
-    { name: "CotizaciÃ³n enviada", order: 3, color: "#f59e0b" },
+    { name: "Cotización enviada", order: 3, color: "#f59e0b" },
     { name: "Seguimiento", order: 4, color: "#ef4444" },
     { name: "Venta cerrada", order: 5, color: "#10b981", isWon: true },
     { name: "Postventa", order: 6, color: "#6366f1" },
@@ -80,7 +80,7 @@ export async function seedDemoData() {
       title: "FAQ General",
       sourceType: "FAQ",
       content:
-        "Horario: 8am-8pm. Entregas en 45 minutos. Pagos por transferencia, tarjeta y efectivo. PolÃ­tica de cambios 24 horas.",
+        "Horario: 8am-8pm. Entregas en 45 minutos. Pagos por transferencia, tarjeta y efectivo. Política de cambios 24 horas.",
       createdById: admin.id,
     },
   });

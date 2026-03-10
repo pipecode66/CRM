@@ -78,7 +78,7 @@ export async function POST(_request: Request, context: { params: Promise<{ campa
           empresa: lead.company,
           ciudad: lead.city,
         })
-      : `Hola ${lead.fullName}, tenemos una actualizaciÃ³n para ti.`;
+      : `Hola ${lead.fullName}, tenemos una actualización para ti.`;
 
     const delivery = await db.campaignDelivery.create({
       data: {

@@ -15,10 +15,10 @@ export default async function AIPage({ params }: { params: Promise<{ locale: str
       <AIAgentPanel />
 
       <article className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-        <h3 className="font-bold">Guardrails crÃ­ticos activos</h3>
+        <h3 className="font-bold">Guardrails críticos activos</h3>
         <p className="mt-1">
           Si la IA detecta pagos, descuentos, datos sensibles o credenciales, marca la respuesta como pendiente de
-          aprobaciÃ³n humana.
+          aprobación humana.
         </p>
       </article>
     </section>

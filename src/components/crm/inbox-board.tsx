@@ -70,7 +70,7 @@ export function InboxBoard({
           <>
             <header className="mb-3 border-b border-slate-100 pb-3">
               <h3 className="text-lg font-black text-slate-900">{activeConversation.lead.fullName}</h3>
-              <p className="text-xs text-slate-500">{activeConversation.channel} Â· {activeConversation.status}</p>
+              <p className="text-xs text-slate-500">{activeConversation.channel} · {activeConversation.status}</p>
             </header>
 
             <div className="mb-4 max-h-[360px] space-y-2 overflow-auto rounded-xl border border-slate-100 bg-slate-50 p-3">
@@ -86,7 +86,7 @@ export function InboxBoard({
               <textarea
                 value={draft}
                 onChange={(event) => setDraft(event.target.value)}
-                placeholder="Escribe /menu para usar plantillas rÃ¡pidas"
+                placeholder="Escribe /menu para usar plantillas rápidas"
                 className="h-24 w-full resize-none rounded-md border border-slate-200 p-2 text-sm focus:border-teal-400 focus:outline-none"
               />
 
@@ -106,7 +106,7 @@ export function InboxBoard({
             </div>
           </>
         ) : (
-          <p className="text-sm text-slate-500">Selecciona una conversaciÃ³n.</p>
+          <p className="text-sm text-slate-500">Selecciona una conversación.</p>
         )}
       </section>
     </div>
