@@ -198,7 +198,24 @@ export async function getTaskBoard(branchId?: string) {
   }
 }
 
-export async function getLeadById(leadId: string) {
+export type LeadDetailRecord = Prisma.LeadGetPayload<{
+  include: {
+    assignedTo: {
+      select: { id: true; name: true; email: true };
+    };
+    stage: true;
+    tasks: true;
+    leadNotes: true;
+    purchases: true;
+    conversations: {
+      include: {
+        messages: true;
+      };
+    };
+  };
+}>;
+
+export async function getLeadById(leadId: string): Promise<LeadDetailRecord | null> {
   try {
     return await db.lead.findUnique({
       where: { id: leadId },
