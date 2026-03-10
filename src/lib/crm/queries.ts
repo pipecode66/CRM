@@ -48,5 +48,48 @@ export async function getLeadById(_leadId: string) {
 
 export async function getTemplates() {
   // Return empty templates until database is set up
-  return [];
+  return [] as Array<{ slug: string; content: string }>;
+}
+
+export async function getTemplatesFull() {
+  // Return empty templates until database is set up
+  return [] as Array<{
+    id: string;
+    slug: string;
+    content: string;
+    category: string;
+    variables: string[];
+  }>;
+}
+
+export async function getWorkflows() {
+  // Return empty workflows until database is set up
+  return [] as Array<{
+    id: string;
+    name: string;
+    trigger: string;
+    version: number;
+    active: boolean;
+  }>;
+}
+
+export async function getReportsData() {
+  // Return empty reports until database is set up
+  return {
+    leadsByChannel: [] as Array<{ channel: string; count: number }>,
+    aiPerformance: [] as Array<{ action: string; count: number; avgConfidence: number }>,
+  };
+}
+
+export async function getCampaigns() {
+  // Return empty campaigns until database is set up
+  return [] as Array<{
+    id: string;
+    name: string;
+    status: string;
+    channel: string;
+    deliveriesCount: number;
+    templateName: string | null;
+    metrics: Record<string, unknown>;
+  }>;
 }

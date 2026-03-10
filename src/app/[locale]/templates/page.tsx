@@ -1,16 +1,13 @@
-import { db } from "@/lib/db";
+import { getTemplatesFull } from "@/lib/crm/queries";
 
 export default async function TemplatesPage() {
-  const templates = await db.template.findMany({
-    orderBy: { updatedAt: "desc" },
-    take: 100,
-  }).catch(() => []);
+  const templates = await getTemplatesFull();
 
   return (
     <section className="space-y-4">
       <header>
-        <h2 className="text-2xl font-black tracking-tight text-slate-900">Mensajes rÃ¡pidos y plantillas</h2>
-        <p className="text-sm text-slate-500">Atajos tipo `/menu`, variables dinÃ¡micas y categorÃ­as comerciales.</p>
+        <h2 className="text-2xl font-black tracking-tight text-slate-900">Mensajes rápidos y plantillas</h2>
+        <p className="text-sm text-slate-500">Atajos tipo `/menu`, variables dinámicas y categorías comerciales.</p>
       </header>
 
       <div className="grid gap-3 lg:grid-cols-2">
@@ -28,7 +25,7 @@ export default async function TemplatesPage() {
         ))}
         {templates.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-400">
-            AÃºn no hay plantillas guardadas.
+            Aún no hay plantillas guardadas.
           </p>
         ) : null}
       </div>

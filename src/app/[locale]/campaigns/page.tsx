@@ -1,20 +1,13 @@
-import { db } from "@/lib/db";
+import { getCampaigns } from "@/lib/crm/queries";
 
 export default async function CampaignsPage() {
-  const campaigns = await db.campaign.findMany({
-    include: {
-      template: true,
-      deliveries: true,
-    },
-    orderBy: { updatedAt: "desc" },
-    take: 50,
-  }).catch(() => []);
+  const campaigns = await getCampaigns();
 
   return (
     <section className="space-y-4">
       <header>
-        <h2 className="text-2xl font-black tracking-tight text-slate-900">CampaÃ±as omnicanal</h2>
-        <p className="text-sm text-slate-500">WhatsApp masivo, seguimiento postventa y reactivaciÃ³n de leads frÃ­os.</p>
+        <h2 className="text-2xl font-black tracking-tight text-slate-900">Campañas omnicanal</h2>
+        <p className="text-sm text-slate-500">WhatsApp masivo, seguimiento postventa y reactivación de leads fríos.</p>
       </header>
 
       <div className="grid gap-3 lg:grid-cols-2">
@@ -27,9 +20,9 @@ export default async function CampaignsPage() {
               </span>
             </div>
             <p className="mt-1 text-xs text-slate-500">
-              Canal: {campaign.channel} Â· Entregas: {campaign.deliveries.length}
+              Canal: {campaign.channel} · Entregas: {campaign.deliveriesCount}
             </p>
-            <p className="mt-2 text-sm text-slate-700">Plantilla: {campaign.template?.name ?? "Sin plantilla"}</p>
+            <p className="mt-2 text-sm text-slate-700">Plantilla: {campaign.templateName ?? "Sin plantilla"}</p>
             <pre className="mt-2 overflow-auto rounded-lg bg-slate-50 p-2 text-xs text-slate-500">
               {JSON.stringify(campaign.metrics ?? {}, null, 2)}
             </pre>
@@ -37,7 +30,7 @@ export default async function CampaignsPage() {
         ))}
         {campaigns.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-400">
-            No hay campaÃ±as creadas.
+            No hay campañas creadas.
           </p>
         ) : null}
       </div>
