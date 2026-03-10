@@ -21,6 +21,7 @@ export type Dictionary = {
   };
   dashboard: {
     title: string;
+    subtitle: string;
     metrics: {
       incoming: string;
       openChats: string;
@@ -30,6 +31,17 @@ export type Dictionary = {
       wonLeads: string;
       pendingTasks: string;
       conversion: string;
+    };
+    sla: {
+      title: string;
+      avgTime: string;
+      target: string;
+    };
+    funnel: {
+      title: string;
+      activeLeads: string;
+      wonLeads: string;
+      totalConversion: string;
     };
   };
   inbox: {
@@ -50,7 +62,7 @@ export const dictionaries: Record<AppLocale, Dictionary> = {
   es: {
     common: {
       appName: "CRM Omnicanal IA",
-      subtitle: "Ventas, soporte y automatizaciÃ³n en un solo lugar",
+      subtitle: "Ventas, soporte y automatización en un solo lugar",
       language: "Idioma",
     },
     nav: {
@@ -59,22 +71,34 @@ export const dictionaries: Record<AppLocale, Dictionary> = {
       leads: "Leads",
       tasks: "Tareas",
       templates: "Plantillas",
-      campaigns: "CampaÃ±as",
+      campaigns: "Campañas",
       reports: "Reportes",
       workflows: "Flujos",
       ai: "Agente IA",
     },
     dashboard: {
-      title: "MÃ©tricas en tiempo real",
+      title: "Métricas en tiempo real",
+      subtitle: "Resumen operativo de ventas, soporte y automatizaciones.",
       metrics: {
         incoming: "Mensajes entrantes",
         openChats: "Chats abiertos",
         noReply: "Sin respuesta",
-        avgResponse: "Tiempo medio de respuesta",
+        avgResponse: "Tiempo promedio de respuesta",
         activeLeads: "Leads activos",
         wonLeads: "Leads ganados",
         pendingTasks: "Tareas pendientes",
-        conversion: "ConversiÃ³n",
+        conversion: "Conversión",
+      },
+      sla: {
+        title: "SLA de respuesta",
+        avgTime: "Tiempo promedio",
+        target: "Objetivo recomendado: < 7 minutos",
+      },
+      funnel: {
+        title: "Conversión del embudo",
+        activeLeads: "Leads activos",
+        wonLeads: "Leads ganados",
+        totalConversion: "Conversión total",
       },
     },
     inbox: {
@@ -82,12 +106,12 @@ export const dictionaries: Record<AppLocale, Dictionary> = {
       empty: "No hay conversaciones activas",
     },
     workflows: {
-      title: "Constructor visual IA + AutomatizaciÃ³n",
-      subtitle: "DiseÃ±a flujos tipo n8n para operaciones de CRM y agente IA.",
+      title: "Constructor visual IA + Automatización",
+      subtitle: "Diseña flujos tipo n8n para operaciones de CRM y agente IA.",
     },
     ai: {
       title: "Agente IA 24/7",
-      subtitle: "AutonomÃ­a total con guardrails crÃ­ticos y trazabilidad.",
+      subtitle: "Autonomía total con guardrails críticos y trazabilidad.",
     },
   },
   en: {
@@ -109,6 +133,7 @@ export const dictionaries: Record<AppLocale, Dictionary> = {
     },
     dashboard: {
       title: "Real-time metrics",
+      subtitle: "Operational snapshot of sales, support and automations.",
       metrics: {
         incoming: "Incoming messages",
         openChats: "Open chats",
@@ -118,6 +143,17 @@ export const dictionaries: Record<AppLocale, Dictionary> = {
         wonLeads: "Won leads",
         pendingTasks: "Pending tasks",
         conversion: "Conversion",
+      },
+      sla: {
+        title: "Response SLA",
+        avgTime: "Average time",
+        target: "Recommended target: < 7 minutes",
+      },
+      funnel: {
+        title: "Funnel conversion",
+        activeLeads: "Active leads",
+        wonLeads: "Won leads",
+        totalConversion: "Total conversion",
       },
     },
     inbox: {
