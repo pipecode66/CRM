@@ -1,4 +1,4 @@
-// Mock data - database tables need to be created first
+﻿// Mock data - database tables need to be created first
 // Run `pnpm db:push` to create tables in your Supabase database
 
 type DashboardFilters = {
@@ -18,6 +18,22 @@ const mockDashboard = {
   wonLeads: 33,
   pendingTasks: 41,
   conversionRate: 26.1,
+};
+
+export type LeadDetailRecord = {
+  fullName: string;
+  email: string | null;
+  phone: string | null;
+  sourceChannel: string;
+  tags: string[];
+  conversations: Array<{
+    id: string;
+    channel: string;
+    status: string;
+    messages: Array<{ content: string }>;
+  }>;
+  tasks: Array<{ id: string; title: string; status: string }>;
+  purchases: Array<{ id: string; productName: string; total: { toString(): string } }>;
 };
 
 export async function getDashboardMetrics(_filters: DashboardFilters = {}) {
@@ -41,7 +57,7 @@ export async function getTaskBoard(_branchId?: string) {
   return [];
 }
 
-export async function getLeadById(_leadId: string) {
+export async function getLeadById(_leadId: string): Promise<LeadDetailRecord | null> {
   // Return null until database is set up
   return null;
 }
