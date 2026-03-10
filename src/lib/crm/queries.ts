@@ -1,5 +1,5 @@
-﻿// Mock data - database tables need to be created first
-// Run `pnpm db:push` to create tables in your Supabase database
+﻿// Mock data - database tables need to be created first.
+// Run `pnpm db:push` to create tables in your Supabase database.
 
 type DashboardFilters = {
   branchId?: string;
@@ -20,6 +20,51 @@ const mockDashboard = {
   conversionRate: 26.1,
 };
 
+export type KanbanLeadRecord = {
+  id: string;
+  fullName: string;
+  sourceChannel: string;
+  tags: string[];
+  potentialValue: number | null;
+  assignedTo: { id: string; name: string | null; email: string } | null;
+  tasks: Array<{ id: string }>;
+};
+
+export type KanbanStageRecord = {
+  id: string;
+  name: string;
+  color: string;
+  leads: KanbanLeadRecord[];
+};
+
+export type InboxConversationRecord = {
+  id: string;
+  channel: string;
+  status: string;
+  unreadCount: number;
+  lead: {
+    id: string;
+    fullName: string;
+    tags: string[];
+  };
+  messages: Array<{
+    id: string;
+    content: string;
+    createdAt: string;
+    direction: string;
+  }>;
+};
+
+export type TaskBoardRecord = {
+  id: string;
+  title: string;
+  priority: string;
+  status: string;
+  dueAt: Date | null;
+  lead: { fullName: string } | null;
+  assignedTo: { name: string | null } | null;
+};
+
 export type LeadDetailRecord = {
   fullName: string;
   email: string | null;
@@ -37,38 +82,37 @@ export type LeadDetailRecord = {
 };
 
 export async function getDashboardMetrics(_filters: DashboardFilters = {}) {
-  // Return mock data until database tables are created
-  // TODO: Implement real Prisma queries after running `pnpm db:push`
+  // Return mock data until database tables are created.
   return mockDashboard;
 }
 
-export async function getKanbanLeads(_branchId?: string) {
-  // Return empty stages until database is set up
+export async function getKanbanLeads(_branchId?: string): Promise<KanbanStageRecord[]> {
+  // Return empty stages until database is set up.
   return [];
 }
 
-export async function getInboxConversations(_branchId?: string) {
-  // Return empty conversations until database is set up
+export async function getInboxConversations(_branchId?: string): Promise<InboxConversationRecord[]> {
+  // Return empty conversations until database is set up.
   return [];
 }
 
-export async function getTaskBoard(_branchId?: string) {
-  // Return empty tasks until database is set up
+export async function getTaskBoard(_branchId?: string): Promise<TaskBoardRecord[]> {
+  // Return empty tasks until database is set up.
   return [];
 }
 
 export async function getLeadById(_leadId: string): Promise<LeadDetailRecord | null> {
-  // Return null until database is set up
+  // Return null until database is set up.
   return null;
 }
 
 export async function getTemplates() {
-  // Return empty templates until database is set up
+  // Return empty templates until database is set up.
   return [] as Array<{ slug: string; content: string }>;
 }
 
 export async function getTemplatesFull() {
-  // Return empty templates until database is set up
+  // Return empty templates until database is set up.
   return [] as Array<{
     id: string;
     slug: string;
@@ -79,7 +123,7 @@ export async function getTemplatesFull() {
 }
 
 export async function getWorkflows() {
-  // Return empty workflows until database is set up
+  // Return empty workflows until database is set up.
   return [] as Array<{
     id: string;
     name: string;
@@ -90,7 +134,7 @@ export async function getWorkflows() {
 }
 
 export async function getReportsData() {
-  // Return empty reports until database is set up
+  // Return empty reports until database is set up.
   return {
     leadsByChannel: [] as Array<{ channel: string; count: number }>,
     aiPerformance: [] as Array<{ action: string; count: number; avgConfidence: number }>,
@@ -98,7 +142,7 @@ export async function getReportsData() {
 }
 
 export async function getCampaigns() {
-  // Return empty campaigns until database is set up
+  // Return empty campaigns until database is set up.
   return [] as Array<{
     id: string;
     name: string;
