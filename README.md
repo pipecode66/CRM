@@ -25,7 +25,7 @@ Plataforma CRM fullstack en Next.js para ventas/soporte con:
 
 - Node.js 22+
 - pnpm 10+
-- Base de datos PostgreSQL (Supabase recomendado)
+- Base de datos Supabase Postgres (obligatoria para este proyecto)
 
 ## Arranque local
 
